@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 from tabulate import tabulate
+import locale
 
 produto = input("Produto: ")
 
@@ -104,14 +105,19 @@ def lista_magazine():
     print(tabulate(table_data, headers, tablefmt="grid"))
    
 def lista_todos():
-    todos = set()     
+    todos = set()
+    
     for produtos in produtos_com_desconto:
         todos.add(produtos['titulo'])
+    
     for produtos in produtos_com_desconto2:
         todos.add(produtos['titulo'])
+    
     lista = list(todos)
     lista2 = sorted(lista)
+    
     titulo(f"Todos os produtos desejados")
+    
     for produtos in lista2:
         print(produtos)
 
@@ -165,8 +171,10 @@ def total():
 
         total_preco += preco_numerico
 
-    titulo("Totalização de preços Magazine Luiza e Submarino")
-    print("Total de Preços: R$", total_preco)
+    titulo("Totalização de preços Submarino e Magazine Luiza")
+    locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
+    preco_formatado = locale.currency(total_preco, grouping=True, symbol="R$")
+    print("Total de Preços:", preco_formatado)
 
 
 def agrupar_sem_desconto():
