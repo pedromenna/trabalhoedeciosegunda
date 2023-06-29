@@ -199,7 +199,7 @@ def pesq_preco():
     else:
         print(f"Produtos com valor até R${valor_maximo:.2f}:")
         for produto in produtos:
-            print(f"Produto: {produto['titulo']}")
+            print(f" {produto['titulo']}")
             print(f" Preço com desconto: {produto['preco']}")
             print()
 
